@@ -5,7 +5,7 @@ State names in a dictionary
 __author__ = 'Mitch Hardy'
 
 
-def main():
+def state_names():
     """
     State Names Dictionary Exercise.
     """
@@ -27,4 +27,4 @@ def main():
             print("Invalid short state")
         state = input("Enter short state: ").upper()
 
-main()
+state_names()
