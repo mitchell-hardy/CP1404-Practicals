@@ -11,19 +11,27 @@ def lists_to_dictionary():
     DATABASE_SIZE = get_db_size()
     dobs, names = get_names_dobs(DATABASE_SIZE)
     names_dobs_dict = dict(zip(names, dobs))
-    age_of_person(names_dobs_dict)
+    program_quit = False
+    while not program_quit:
+        age_of_person(names_dobs_dict)
+        user_quit = input("If you would like to quit, please type (q)\n"
+                          "Otherwise press (enter) to continue: ").lower()
+        if user_quit == "q":
+            program_quit = True
+    print("Thanks for playing with my dictionary!")
 
 
 def get_db_size():
-        db_size = 0
-        correct_db_size = False
-        while not correct_db_size:
-            try:
-                db_size = int(input("Please advise how many people will be added: "))
-                correct_db_size = True
-            except ValueError:
-                print("Incorrect input, please enter numbers only!")
-        return db_size
+    """Get Database size from the user"""
+    db_size = 0
+    correct_db_size = False
+    while not correct_db_size:
+        try:
+            db_size = int(input("Please advise how many people will be added: "))
+            correct_db_size = True
+        except ValueError:
+            print("Incorrect input, please enter numbers only!")
+    return db_size
 
 
 def get_names_dobs(size):
@@ -49,21 +57,23 @@ def get_names_dobs(size):
 
 
 def age_of_person(names_dobs_dict):
-    """Ask user to enter a name, if name in Dictionary, calculate and display age use datetime functions.
-    If name not in dictionary, display name data to user."""
+    """Ask user to enter a name, if name in Dictionary,
+       calculate and display age use datetime functions.
+       If name not in dictionary, display name data to user."""
     import _datetime
-    age_query = input("Please enter a name to see their age: ").lower()
-    while age_query not in names_dobs_dict:
-        print("We have no data for that person, please choose from these people: ")
+    age_query_name = input("Please enter a name to see their age: ").lower()
+    while age_query_name not in names_dobs_dict:
+        print('We have no data for that person, please choose from these people: ')
         for key in names_dobs_dict:
             print(str(key).capitalize())
         age_query = input("Please enter a name to see their age: ").lower()
-    if age_query in names_dobs_dict:
-        today_date = _datetime.date.today()
-        current_year = int(today_date.strftime("%Y"))
-        # TODO FIX THIS -----  person_born = int(names_dobs_dict(age_query[6:]))
-        persons_age = current_year - person_born
-        print("{} is {} years old.".format(age_query, persons_age).capitalize())
+    if age_query_name in names_dobs_dict:
+        today_date = _datetime.datetime.now()
+        person_born = _datetime.datetime.strptime(names_dobs_dict.get(age_query_name), "%d/%m/%Y")
+        days_alive = (today_date - person_born).days
+        age_in_years = round(days_alive / 365.2425) # Allows for leap years
+        print("{} is {} years old today!".format(age_query_name, age_in_years))
+
 
 
 lists_to_dictionary()
