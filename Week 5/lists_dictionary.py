@@ -66,7 +66,7 @@ def age_of_person(names_dobs_dict):
         print('We have no data for that person, please choose from these people: ')
         for key in names_dobs_dict:
             print(str(key).capitalize())
-        age_query = input("Please enter a name to see their age: ").lower()
+        age_query_name = input("Please enter a name to see their age: ").lower()
     if age_query_name in names_dobs_dict:
         today_date = _datetime.datetime.now()
         person_born = _datetime.datetime.strptime(names_dobs_dict.get(age_query_name), "%d/%m/%Y")
