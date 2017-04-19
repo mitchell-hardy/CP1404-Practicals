@@ -15,7 +15,7 @@ class BoxLayoutDemo(App):
 
     def clear_button_reset(self):
         self.root.ids.output_label.text = "Greet"
-        self.root.ids.input_name.text = ""
+
 
 
 BoxLayoutDemo().run()
