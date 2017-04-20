@@ -9,6 +9,7 @@ from kivy.lang import Builder
 
 
 class passFailExercise(App):
+    """Build the kivy app"""
     def build(self):
         self.title = "Pass/Fail Exercise"
         self.root = Builder.load_file('pass_fail.kv')
@@ -22,14 +23,18 @@ class passFailExercise(App):
         except ValueError:
             return 0
 
-
     def handle_calculation(self):
+        """Calculate the users grade base on the score input."""
         user_score = self.check_score()
-        if user_score >= 50:
-            self.root.ids.result_output.text = str("Pass")
-        else:
+        if user_score < 50:
             self.root.ids.result_output.text = str("Fail")
-
-
+        elif user_score >= 50 and user_score < 65:
+            self.root.ids.result_output.text = str("Pass")
+        elif user_score >= 65 and user_score < 75:
+            self.root.ids.result_output.text = str("Credit")
+        elif user_score >= 75 and user_score < 85:
+            self.root.ids.result_output.text = str("Distinction")
+        elif user_score >= 85:
+            self.root.ids.result_output.text = str("High Distinction")
 
 passFailExercise().run()
