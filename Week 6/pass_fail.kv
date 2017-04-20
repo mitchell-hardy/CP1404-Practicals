@@ -1,0 +1,20 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            id: score_input
+            text: 'Score'
+            on_text: app.handle_calculation()
+        Label:
+            id: result_output
+            font_size: 24
+            text: 'Result...'
+            color: (1, 1, 1, 1)
+
+    Label:
+        text: 'Enter your score to see your result.'
+        color: (1, 1, 0, 1)
+
+
+
