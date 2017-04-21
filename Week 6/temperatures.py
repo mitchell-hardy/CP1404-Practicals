@@ -31,12 +31,12 @@ class TempConverterApp(App):
         if user_value != 0:
             if conversion_id == "C":
                 fahrenheit = user_value * 9.0 / 5 + 32
-                self.root.ids.result_output.text = str("{} Celsius = {} Fahrenheit".format(user_value, fahrenheit))
+                self.root.ids.result_output.text = str("{} Celsius = {:.2f} Fahrenheit".format(user_value, fahrenheit))
 
                 return fahrenheit
             elif conversion_id == "F":
                 celsius = (5 / 9 * (user_value - 32))
-                self.root.ids.result_output.text = str("{} Fahrenheit = {} Celsius".format(user_value, celsius))
+                self.root.ids.result_output.text = str("{} Fahrenheit = {:.2f} Celsius".format(user_value, celsius))
         else:
             self.root.ids.result_output.text = str("Please only enter numbers, try again. ")
 
