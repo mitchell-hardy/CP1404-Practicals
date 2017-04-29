@@ -59,3 +59,37 @@ class Taxi(Car):
         distance_driven = super().drive(distance)
         self.current_fare_distance += distance_driven
         return distance_driven
+
+class UnreliableCar(Car):
+    """Specialised version of a Car that include reliability measurement."""
+
+    def __init__(self, name, fuel, reliability):
+        super().__init__(name, fuel)
+        self.reliability = reliability
+
+    def drive(self, distance):
+        from random import randint
+        reliable_kms = randint(0,100)
+        if reliable_kms < distance:
+            distance_driven = super().drive(distance)
+        else:
+            distance_driven = super().drive(0)
+        return distance_driven
+
+
+class SilverServiceTaxi(Taxi):
+    """Specialised version of a Taxi including an attribute for fanciness"""
+    flagfall = 4.50
+
+    def __init__(self, name, fuel, fanciness):
+        super().__init__(name, fuel)
+        self.special_price_per_km = self.price_per_km * fanciness
+
+    def get_fare(self):
+        """ get the price for the taxi trip """
+        return self.special_price_per_km * self.current_fare_distance
+
+    def __str__(self):
+        return"{}, {}km on current fare, ${:.2f}/km plus flagfall of ${:.2f}. Total fare is ${:.2f}"\
+            .format(super().__str__(), self.current_fare_distance,
+                    self.special_price_per_km, self.flagfall, self.get_fare() + self.flagfall)

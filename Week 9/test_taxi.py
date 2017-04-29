@@ -2,7 +2,6 @@
 
 __author__ = 'Mitch Hardy'
 
-from Taxi import Car
 from Taxi import Taxi
 
 def test_taxi_program():
